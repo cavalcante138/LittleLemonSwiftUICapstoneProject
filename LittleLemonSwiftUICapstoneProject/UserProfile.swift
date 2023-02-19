@@ -8,8 +8,32 @@
 import SwiftUI
 
 struct UserProfile: View {
+    
+    @Environment(\.presentationMode) var presentation
+    
+    let firstName = UserDefaults.standard.string(forKey: kFirstName) ?? ""
+    let lastName = UserDefaults.standard.string(forKey: kLastName) ?? ""
+    let email = UserDefaults.standard.string(forKey: kEmail) ?? ""
+    @State private var isLoggedIn = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Personal information")
+                .font(.title)
+                .padding(.bottom, 10)
+            Image("profile-image-placeholder")
+                .resizable()
+                .frame(width: 100, height: 100)
+            Text("First name: \(firstName)")
+            Text("Last name: \(lastName)")
+            Text("Email: \(email)")
+            
+            Button("Logout") {
+                UserDefaults.standard.set(false, forKey: kIsLoggedIn)
+                self.presentation.wrappedValue.dismiss()
+            }
+            Spacer()
+        }
     }
 }
 

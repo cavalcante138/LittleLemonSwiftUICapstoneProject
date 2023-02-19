@@ -9,7 +9,21 @@ import SwiftUI
 
 struct Menu: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+               Text("Little Lemon")
+                   .font(.title)
+                   .fontWeight(.bold)
+               Text("Chicago")
+                   .font(.subheadline)
+                   .foregroundColor(.gray)
+               Text("Little Lemon offers a wide variety of delicious and healthy food options that are made fresh each day. You can browse the menu by category to find your favorites, and we offer a seamless ordering experience through the app.")
+                   .font(.body)
+                   .multilineTextAlignment(.center)
+                   .padding()
+               List {
+                   // Add menu items here
+               }
+           }
     }
 }
 
