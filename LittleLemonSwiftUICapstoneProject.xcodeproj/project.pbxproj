@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922F6DDA29A3451B0026D0EA /* lemon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 922F6DD929A3451B0026D0EA /* lemon-font.ttf */; };
+		922F6DDD29A34BF70026D0EA /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F6DDC29A34BF70026D0EA /* Header.swift */; };
+		922F6DE029A3726B0026D0EA /* ButtonLemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922F6DDF29A3726B0026D0EA /* ButtonLemon.swift */; };
 		9283B6D029A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9283B6CF29A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProjectApp.swift */; };
 		9283B6D429A0CA4C00A8BC38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9283B6D329A0CA4C00A8BC38 /* Assets.xcassets */; };
 		9283B6D729A0CA4C00A8BC38 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9283B6D629A0CA4C00A8BC38 /* Preview Assets.xcassets */; };
@@ -24,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		922F6DD929A3451B0026D0EA /* lemon-font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lemon-font.ttf"; sourceTree = "<group>"; };
+		922F6DDB29A345690026D0EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		922F6DDC29A34BF70026D0EA /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		922F6DDF29A3726B0026D0EA /* ButtonLemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLemon.swift; sourceTree = "<group>"; };
 		9283B6CC29A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleLemonSwiftUICapstoneProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9283B6CF29A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittleLemonSwiftUICapstoneProjectApp.swift; sourceTree = "<group>"; };
 		9283B6D329A0CA4C00A8BC38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,11 +59,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		922F6DD829A344FF0026D0EA /* project-fonts */ = {
+			isa = PBXGroup;
+			children = (
+				922F6DD929A3451B0026D0EA /* lemon-font.ttf */,
+			);
+			path = "project-fonts";
+			sourceTree = "<group>";
+		};
+		922F6DDE29A34C020026D0EA /* components */ = {
+			isa = PBXGroup;
+			children = (
+				922F6DDC29A34BF70026D0EA /* Header.swift */,
+				922F6DDF29A3726B0026D0EA /* ButtonLemon.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
 		9283B6C329A0CA4B00A8BC38 = {
 			isa = PBXGroup;
 			children = (
-				92FCCC4229A218CF00775B1C /* Dish+CoreDataClass.swift */,
-				92FCCC4329A218CF00775B1C /* Dish+CoreDataProperties.swift */,
 				9283B6CE29A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProject */,
 				9283B6CD29A0CA4B00A8BC38 /* Products */,
 			);
@@ -73,6 +95,11 @@
 		9283B6CE29A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProject */ = {
 			isa = PBXGroup;
 			children = (
+				922F6DDE29A34C020026D0EA /* components */,
+				922F6DDB29A345690026D0EA /* Info.plist */,
+				922F6DD829A344FF0026D0EA /* project-fonts */,
+				92FCCC4229A218CF00775B1C /* Dish+CoreDataClass.swift */,
+				92FCCC4329A218CF00775B1C /* Dish+CoreDataProperties.swift */,
 				92FCCC3A29A2114E00775B1C /* Models */,
 				9283B6CF29A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProjectApp.swift */,
 				9283B6D329A0CA4C00A8BC38 /* Assets.xcassets */,
@@ -164,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9283B6D729A0CA4C00A8BC38 /* Preview Assets.xcassets in Resources */,
+				922F6DDA29A3451B0026D0EA /* lemon-font.ttf in Resources */,
 				9283B6D429A0CA4C00A8BC38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92FCCC2F29A1FF7D00775B1C /* Menu.swift in Sources */,
+				922F6DDD29A34BF70026D0EA /* Header.swift in Sources */,
 				92FCCC3129A2027500775B1C /* UserProfile.swift in Sources */,
 				92FCCC3C29A2116200775B1C /* MenuList.swift in Sources */,
 				92FCCC2929A1F13700775B1C /* Onboarding.swift in Sources */,
@@ -185,6 +214,7 @@
 				92FCCC2D29A1FF3C00775B1C /* Home.swift in Sources */,
 				92FCCC3E29A2117600775B1C /* MenuItem.swift in Sources */,
 				9283B6D029A0CA4B00A8BC38 /* LittleLemonSwiftUICapstoneProjectApp.swift in Sources */,
+				922F6DE029A3726B0026D0EA /* ButtonLemon.swift in Sources */,
 				92FCCC3729A20EF500775B1C /* FetchedObjects.swift in Sources */,
 				92FCCC4529A218CF00775B1C /* Dish+CoreDataProperties.swift in Sources */,
 			);
@@ -317,6 +347,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LittleLemonSwiftUICapstoneProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LittleLemonSwiftUICapstoneProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -345,6 +376,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LittleLemonSwiftUICapstoneProject/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LittleLemonSwiftUICapstoneProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

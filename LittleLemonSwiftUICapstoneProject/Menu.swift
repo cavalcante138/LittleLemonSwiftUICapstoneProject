@@ -15,40 +15,135 @@ struct Menu: View {
     @State private var searchText: String = ""
     
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.presentationMode) var presentation
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Dish.title, ascending: true)])
     private var dishes: FetchedResults<Dish>
+
+
     
     var body: some View {
         VStack {
-               Text("Little Lemon")
-                   .font(.title)
-                   .fontWeight(.bold)
-               Text("Chicago")
-                   .font(.subheadline)
-                   .foregroundColor(.gray)
-               Text("Little Lemon offers a wide variety of delicious and healthy food options that are made fresh each day. You can browse the menu by category to find your favorites, and we offer a seamless ordering experience through the app.")
-                   .font(.body)
-                   .multilineTextAlignment(.center)
-                   .padding()
-                TextField("Search menu", text: $searchText)
+          Header(
+            isProfilePicturePresent: true)
+            VStack{
+            HStack{
+                VStack(alignment: .leading){
+                    Text("Little Lemon")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("secondarycolor"))
+                        .font(Font.custom("MarkaziText-Medium", size: 32, relativeTo: .title))
+                    Text("Chicago")
+                        .font(Font.custom("MarkaziText-Medium", size: 26, relativeTo: .subheadline))
+                    Text("We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.")
+                        .font(.caption)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 26, trailing: 0))
+                        .multilineTextAlignment(.leading)
+                }
+                Image("banner")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 150, height: 150)
+                // add border and corner radius
+                .cornerRadius(20)
+
+            }
+            TextField("Search menu", text: $searchText)
+                .padding()
+                .background(Color.white)
+                .foregroundColor(Color("LittleLemonPrimaryColor"))
+                .cornerRadius(5.0)
+
+            }  .padding()
+                .background(Color("LittleLemonPrimaryColor"))
+                .foregroundColor(Color.white)
+
+        Group {
+            HStack {
+                Text("ORDER FOR DELIVERY")
+                    .font(.system(size: 16, weight: .bold))
+                Spacer()
+            }.padding(EdgeInsets(top: 24, leading: 12, bottom: 0, trailing: 0))
+            ScrollView(.horizontal, showsIndicators: false){
+            HStack {
+            Button(action: {
+                }) {
+                    Text("All")
+                        .font(.system(size: 16, weight: .bold))
+                           .foregroundColor(Color("LittleLemonPrimaryColor"))
+                           .frame(minWidth: 70)
+                           .padding(
+                            EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+                           )
+                           .background(RoundedRectangle(cornerRadius: 8)
+                                           .stroke(Color("LittleLemonPrimaryColor"), lineWidth: 1)
+                                           .background(Color("grey")))
+                          .scaleEffect(1.0)
+                  }
+                Spacer()
+                            Button(action: {
+                }) {
+                    Text("Mains")
+                        .font(.system(size: 16, weight: .bold))
+                           .foregroundColor(Color("LittleLemonPrimaryColor"))
+                           .frame(minWidth: 70)
+                           .padding(
+                            EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+                           )
+                           .background(RoundedRectangle(cornerRadius: 8)
+                                           .stroke(Color("LittleLemonPrimaryColor"), lineWidth: 1)
+                                           .background(Color("grey")))
+                          .scaleEffect(1.0)
+                  }
+                Spacer()
+            Button(action: {
+                }) {
+                    Text("Desserts")
+                        .font(.system(size: 16, weight: .bold))
+                           .foregroundColor(Color("LittleLemonPrimaryColor"))
+                           .frame(minWidth: 70)
+                           .padding(
+                            EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+                           )
+                           .background(RoundedRectangle(cornerRadius: 8)
+                                           .stroke(Color("LittleLemonPrimaryColor"), lineWidth: 1)
+                                           .background(Color("grey")))
+                          .scaleEffect(1.0)
+                  }
+                Spacer()
+            Button(action: {
+                }) {
+                    Text("Drinks")
+                        .font(.system(size: 16, weight: .bold))
+                           .foregroundColor(Color("LittleLemonPrimaryColor"))
+                           .frame(minWidth: 70)
+                           .padding(
+                            EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
+                           )
+                           .background(RoundedRectangle(cornerRadius: 8)
+                                           .stroke(Color("LittleLemonPrimaryColor"), lineWidth: 1)
+                                           .background(Color("grey")))
+                          .scaleEffect(1.0)
+                  }
+            }.padding(EdgeInsets(top: 8, leading: 12, bottom: 0, trailing: 12))
+            }.padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))     
+        }   
             FetchedObjects(
                 predicate: buildPredicate(),
                 sortDescriptors: buildSortDescriptors()) { (dishes: [Dish]) in
-                List {
+                ScrollView(.vertical, showsIndicators: false) {
                     ForEach(dishes, id: \.self) { dish in
-                        HStack {
-                            HStack{
-                                Text(dish.title ?? "")
-                                Spacer()
-                                Text(dish.price ?? "")
-                            }
+                        HStack {                         
                             AsyncImage(url: URL(string: dish.image ?? "")!) { phase in
                                 switch phase {
                                 case .empty:
                                     ProgressView()
                                 case .success(let image):
                                     image.resizable()
-                                        .scaledToFit()
+                                     // image cover
+                                        .aspectRatio(contentMode: .fill)
+                                        .padding(
+                                            EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20)
+                                        )
                                 case .failure:
                                     Image(systemName: "xmark.octagon")
                                         .resizable()
@@ -57,14 +152,29 @@ struct Menu: View {
                                     EmptyView()
                                 }
                             }
-                            .frame(width: 40, height: 40)
+                            .frame(width: 100, height: 100)
+                            Spacer()
+                            VStack(alignment: .leading) {
+                                Text(dish.title ?? "")
+                                Spacer()
+                                // To implement optional description
+                                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+                                .foregroundColor(Color.gray)
+                                Spacer()
+                                // price with two decimal places
+                                Text("$" + (dish.price ?? ""))
+                                .foregroundColor(Color.gray)
+                            }
                         }
+                        .padding()
+                        // border width only on top and bottom
+                        .border(Color("grey"), width: 1)
                     }
                     
                 }
             }
-           }.onAppear {
-               getMenuData()
+        }.onAppear {
+                   getMenuData()
            }
     }
     func getMenuData() {
@@ -122,6 +232,16 @@ struct Menu: View {
             return NSPredicate(format: "title CONTAINS[cd] %@", searchText)
         }
     }
+    // function to now the font name in the system
+    // func nowthefont() -> Void{
+    //     for familyName in UIFont.familyNames{
+    //         print(familyName)
+            
+    //         for fontName in UIFont.fontNames(forFamilyName: familyName){
+    //             print("-- \(fontName)")
+    //         }
+    //     }
+    // }
     
 }
 

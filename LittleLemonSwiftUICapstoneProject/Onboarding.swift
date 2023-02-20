@@ -24,27 +24,79 @@ struct Onboarding: View {
     var body: some View {
         NavigationView {
             VStack {
+            Header(
+            isProfilePicturePresent: false)
+                        VStack{
+            HStack{
+                VStack(alignment: .leading){
+                    Text("Little Lemon")
+                        .fontWeight(.bold)
+                        .foregroundColor(Color("secondarycolor"))
+                        .font(Font.custom("MarkaziText-Medium", size: 32, relativeTo: .title))
+                    Text("Chicago")
+                        .font(Font.custom("MarkaziText-Medium", size: 26, relativeTo: .subheadline))
+                    Text("We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.")
+                        .font(.caption)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 26, trailing: 0))
+                        .multilineTextAlignment(.leading)
+                }
+                Image("banner")
+                .resizable()
+                // image cover
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 150, height: 150)
+                // add border and corner radius
+                .cornerRadius(20)
+
+            }}  .padding()
+                .background(Color("LittleLemonPrimaryColor"))
+                .foregroundColor(Color.white)
                 NavigationLink(
                        destination: Home(),
                        isActive: $isLoggedIn) {
                        EmptyView()
                 }
+
+                VStack(spacing: 5){
                 
+                Text("Welcome to Little Lemon App!")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("LittleLemonPrimaryColor"))
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 20)
+
+                VStack(alignment: .leading, spacing: 5){
+                Text("First Name")
+                       .foregroundColor(.gray)
+                       .font(.caption2)
+                       .fontWeight(.bold)
                 TextField("First Name", text: $firstName)
                        .padding(10)
                        .background(RoundedRectangle(cornerRadius: 8)
-                                       .stroke(Color("Border"), lineWidth: 1))
+                                       .stroke(Color("grey"), lineWidth: 1))
+                Text("Last Name")
+                       .foregroundColor(.gray)
+                       .font(.caption2)
+                       .fontWeight(.bold)
                 TextField("Last Name", text: $lastName)
                        .padding(10)
                        .background(RoundedRectangle(cornerRadius: 8)
-                                       .stroke(Color("Border"), lineWidth: 1))
+                                       .stroke(Color("grey"), lineWidth: 1))
+                Text("Email")
+                       .foregroundColor(.gray)
+                       .font(.caption2)
+                       .fontWeight(.bold)
                 TextField("Email", text: $email)
                        .padding(10)
+                       .autocapitalization(.none)
                        .background(RoundedRectangle(cornerRadius: 8)
-                                       .stroke(Color("Border"), lineWidth: 1))
-                Button(action: {
+                                       .stroke(Color("grey"), lineWidth: 1))
+
+                }
+
+                ButtonLemon(title: "Register", action: {
                     if !firstName.isEmpty && !lastName.isEmpty && !email.isEmpty {
-                        // Optional email validation check
                         if isValidEmail(email) {
                             UserDefaults.standard.set(firstName, forKey: kFirstName)
                             UserDefaults.standard.set(lastName, forKey: kLastName)
@@ -52,27 +104,16 @@ struct Onboarding: View {
                             UserDefaults.standard.set(true, forKey: kIsLoggedIn)
                             isLoggedIn = true
                         } else {
-                            // Show an error message for invalid email
                             errorMessage = "Invalid email."
                             showError = true
                         }
                     } else {
-                        // Show an error message for empty fields
                         errorMessage = "Please fill in all fields."
                         showError = true
                     }
-                }) {
-                    Text("Register")
-                        .font(.system(size: 16, weight: .bold))
-                           .foregroundColor(.white)
-                           .frame(maxWidth: .infinity, minHeight: 40)
-                           .padding()
-                           .background(RoundedRectangle(cornerRadius: 8)
-                                           .stroke(Color("LittleLemonPrimaryColor"), lineWidth: 1)
-                                           .background(Color("LittleLemonPrimaryColor")))
-                           .scaleEffect(1.0)
-                           .border(Color.black)
-                }
+                })
+                }.padding()
+                Spacer()
             }
             .alert(isPresented: $showError) {
                 Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))

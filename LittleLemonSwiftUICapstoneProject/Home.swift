@@ -23,7 +23,10 @@ struct Home: View {
         }
         .environment(\.managedObjectContext, persistence.container.viewContext)
         .navigationBarBackButtonHidden(true) 
+
     }
+
+
 }
 
 struct Home_Previews: PreviewProvider {
